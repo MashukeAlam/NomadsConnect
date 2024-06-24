@@ -14,11 +14,15 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      
+      - name: Debug SSH Key
+        run: echo "$SSH_PRIVATE_KEY"
+      
 
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.MASHUJIM }}
+          ssh-private-key: ${{ secrets.SSH_PRIV }}
 
       - name: Deploy via SSH
         run: |
