@@ -21,6 +21,7 @@ jobs:
           host: 62.72.7.168
           username: root
           key: ${{ secrets.SSH_PRIV }}
+          passphrase: Bishuddho100%
           port: 22
           script: |
             cd /root/
