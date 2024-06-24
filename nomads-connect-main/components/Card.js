@@ -77,7 +77,7 @@ const Card = () => {
     else if(!isAuthenticated){
       return(
         <div className={style.cardMain}>
-          Connect your wallet
+          Please connect your wallet
         </div>
       )
     }
