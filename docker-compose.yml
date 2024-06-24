@@ -14,7 +14,8 @@ services:
       - "6380:6379"
 
   parse-server:
-    image: mashukealam/parseserver:v1
+    build:
+      context: ./parse-server-migration
     container_name: parse-server
     ports:
       - "1337:1337"
@@ -27,7 +28,8 @@ services:
       - REDIS_CONNECTION_STRING=redis://redis:6379
   
   moralis-next-app:
-    image: mashukealam/nextapp:v1
+    build:
+      context: ./nomads-connect-main
     container_name: moralis-next-app
     ports:
       - "3000:3000"
@@ -36,7 +38,8 @@ services:
       - parse-server
       - sanity
   sanity:
-    image: mashukealam/sanity:v1
+    build:
+      context: ./nomads-connect-main/studio
     container_name: sanity
     ports:
       - "3333:3333"

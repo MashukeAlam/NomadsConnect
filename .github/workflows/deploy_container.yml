@@ -18,11 +18,18 @@ jobs:
       - name: Setup and Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: 62.72.7.168
-          username: root
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIV }}
-          passphrase: Bishuddho100%
-          port: 22
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /root/
-            echo "Ghost from GitHub was here at $(date '+%B %d, %Y %I:%M:%S %p')"
+            echo "Ghost from GitHub was here at $(date '+%B %d, %Y %I:%M:%S %p')" >> /root/ghost.log
+            cd /root/app/NomadsConnect
+            docker compose down
+            echo "Ghost tried to nuke the Docker instance at $(date '+%B %d, %Y %I:%M:%S %p')" >> /root/ghost.log
+            git checkout main
+            git pull 
+            docker compose up --build -d
+
+
