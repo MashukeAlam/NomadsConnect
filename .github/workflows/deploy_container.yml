@@ -32,7 +32,7 @@ jobs:
 
       - name: SSH into server
         run: |
-          ssh -o StrictHostKeyChecking=no user@${{ secrets.SSH_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no root@62.72.7.168 << 'EOF'
             # Commands to run on the server
           EOF
       - name: Cleanup
