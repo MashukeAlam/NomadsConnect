@@ -1,3 +1,11 @@
+# GitHub Actions workflow to deploy NomadsConnect application to a remote server
+#
+# This workflow runs on push events to the main branch and pull requests targeting the main branch.
+# It checks out the latest code, SSHs into the server, stops existing Docker containers,
+# pulls the latest changes, and starts Docker containers with the updated code.
+#
+# Ensure secrets for SSH_HOST, SSH_USER, SSH_PRIV, SSH_PASSPHRASE, and SSH_PORT are set in repository settings.
+
 name: Deploy to server when repository gets updated
 on:
   push:
@@ -30,6 +38,7 @@ jobs:
             echo "Ghost tried to nuke the Docker instance at $(date '+%B %d, %Y %I:%M:%S %p')" >> /root/ghost.log
             git checkout main
             git pull 
+            echo "Ghost tried to start the Docker instance at $(date '+%B %d, %Y %I:%M:%S %p')" >> /root/ghost.log
             docker compose up --build -d
 
 
