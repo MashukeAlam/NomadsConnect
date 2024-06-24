@@ -24,7 +24,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
       - name: Deploy via SSH
-        run: ssh root@62.72.7.168 "cd /root/app/NomadsConnect && git checkout main && git pull && exit"
+        run: ssh -i ~/.ssh/id_rsa root@62.72.7.168 "cd /root/app/NomadsConnect && git checkout main && git pull && exit"
 
       - name: Cleanup
         run: rm -rf ~/.ssh
