@@ -31,6 +31,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa.pub
 
       - name: SSH into server
-        run: ssh -o StrictHostKeyChecking=no root@62.72.7.168
+        run: ssh -o HostKeyAlgorithms=+ssh-ed25519 root@62.72.7.168
       - name: Cleanup
         run: rm -rf ~/.ssh
