@@ -1,0 +1,33 @@
+name: Deploy to server when repository gets updated
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PUB }}
+
+      - name: Deploy via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no root@62.72.7.16 << 'EOF'
+            cd /path/to/your/app
+            git pull origin main
+            docker-compose down
+            docker-compose up -d
+          EOF
+
+      - name: Cleanup
+        run: rm -rf ~/.ssh
