@@ -25,4 +25,4 @@ jobs:
           port: 22
           script: |
             cd /root/
-            echo "github was here" >> ghost.txt
+            echo "Ghost from GitHub was here at $(date '+%B %d, %Y %I:%M:%S %p')"
