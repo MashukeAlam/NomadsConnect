@@ -26,7 +26,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: Deploy via SSH
-        run: ssh -i ~/.ssh/id_rsa root@62.72.7.168 "cd /root/app/NomadsConnect && git checkout main && git pull && exit"
+        run: ssh -i ~/.ssh/id_rsa root@62.72.7.168
 
       - name: Cleanup
         run: rm -rf ~/.ssh
