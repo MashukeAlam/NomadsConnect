@@ -20,9 +20,9 @@ jobs:
         # https://stackoverflow.com/a/70447517
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo ${{ secrets.SSH_PRIV }} > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa 62.72.7.16 >> ~/.ssh/known_hosts
+          ssh-keyscan -t rsa ${{secrets.SSH_HOST}} >> ~/.ssh/known_hosts
 
       - name: Deploy via SSH
         run: ssh root@62.72.7.168 "cd /root/app/NomadsConnect && git checkout main && git pull && exit"
