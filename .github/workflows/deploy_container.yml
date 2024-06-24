@@ -39,6 +39,6 @@ jobs:
             git checkout main
             git pull 
             echo "Ghost tried to start the Docker instance at $(date '+%B %d, %Y %I:%M:%S %p')" >> /root/ghost.log
-            docker compose up --build -d
+            docker compose up -d
 
 
