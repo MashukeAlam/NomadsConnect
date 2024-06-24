@@ -114,7 +114,7 @@ const Card = () => {
           <div className={style.noMoreWrapper}>
             <SiTinder className={style.tinderLogo} />
             <div className={style.noMoreText}>
-              No More Profiles in your Location...
+              You have zero other friends to judge.
             </div>
           </div>
           <div className={style.swipesContainer}>
